@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Konkan Origins – Pure from the Coast</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap"
+    rel="stylesheet" />
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+  <!-- Your CSS file -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <!-- NAVBAR will go here -->
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="nav-container">
+
+      <!-- Logo -->
+      <a href="#home" class="nav-logo">
+        <img src="images/Konkan Origins Logo.png" alt="Konkan Origins" class="brand-logo" />
+      </a>
+
+      <!-- Navigation Links -->
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#categories">Shop</a></li>
+        <li><a href="#products">Products</a></li>
+        <li><a href="#why-us">Our Story</a></li>
+        <li><a href="#footer">Contact</a></li>
+      </ul>
+
+      <!-- Right Side Icons -->
+      <div class="nav-actions">
+        <div class="nav-search">
+          <input type="text" placeholder="Search products..." />
+          <span class="search-icon">🔍</span>
+        </div>
+        <button class="nav-btn" title="Account" onclick="openAuthModal()">👤</button>
+        <button class="nav-btn wishlist-btn" title="Wishlist">🤍</button>
+        <button class="nav-btn cart-btn" title="Cart">
+          🛒 <span class="cart-count">0</span>
+        </button>
+      </div>
+
+      <!-- Hamburger for Mobile -->
+      <div class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+
+    </div>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#categories">Shop</a></li>
+        <li><a href="#products">Products</a></li>
+        <li><a href="#why-us">Our Story</a></li>
+        <li><a href="#footer">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- HERO SECTION will go here -->
+  <!-- HERO SECTION -->
+  <section class="hero" id="home">
+    <div class="hero-container">
+
+      <!-- Left Content -->
+      <div class="hero-content">
+        <span class="hero-badge">100% Natural & Coastal</span>
+        <h1 class="hero-title">
+          Taste the Soul of <br />
+          <span class="hero-highlight">Konkan Coast</span>
+        </h1>
+        <p class="hero-desc">
+          Handpicked cashews, sun-dried kokum, tropical fruit pulps and
+          traditional coastal products — delivered fresh from the source
+          to your doorstep.
+        </p>
+        <div class="hero-buttons">
+          <a href="#products" class="btn-primary">Shop Now</a>
+          <a href="#categories" class="btn-secondary">Explore Categories</a>
+        </div>
+
+        <!-- Trust Badges -->
+        <div class="hero-trust">
+          <div class="trust-item">
+            <strong>500+</strong>
+            <span>Happy Customers</span>
+          </div>
+          <div class="trust-divider"></div>
+          <div class="trust-item">
+            <strong>100%</strong>
+            <span>Natural Products</span>
+          </div>
+          <div class="trust-divider"></div>
+          <div class="trust-item">
+            <strong>Free</strong>
+            <span>Delivery above 499</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Content Interactive Map -->
+      <div class="hero-visual">
+        <div id="hero-map"></div>
+      </div>
+
+    </div>
+
+    <!-- Scroll Indicator -->
+    <div class="hero-scroll">
+      <span>Scroll to explore</span>
+      <div class="scroll-arrow">
+        <div class="arrow-line"></div>
+        <div class="arrow-head"></div>
+      </div>
+    </div>
+  </section>
+
+  </section>
+
+  <!-- NEW FEATURED PRODUCTS SECTION -->
+  <section class="featured-products featured-section" id="featured-products">
+    <div class="section-container">
+
+      <!-- Section Header -->
+      <div class="section-header">
+        <span class="section-badge">Handpicked</span>
+        <h2 class="section-title">Featured Konkan Products</h2>
+        <p class="section-desc">
+          Discover our premium selection of coastal specialties,
+          handpicked for the perfect Konkan experience.
+        </p>
+      </div>
+
+      <!-- 4 Column Grid -->
+      <div class="featured-grid">
+
+        <div class="featured-card" onclick="openProductModal('cashews')">
+          <div class="featured-img">
+            <img src="images/Cashews.png" alt="Premium Cashews" />
+          </div>
+          <div class="featured-info">
+            <h3>Premium Cashews</h3>
+            <span class="featured-price">Rs. 349</span>
+            <button class="add-cart-btn btn-secondary" onclick="addToCart(event, 'cashews')">Add to Cart</button>
+          </div>
+        </div>
+
+        <div class="featured-card" onclick="openProductModal('mango_pulp')">
+          <div class="featured-img">
+            <img src="images/Mango Pulp.png" alt="Alphonso Mango Pulp" />
+          </div>
+          <div class="featured-info">
+            <h3>Alphonso Mango Pulp</h3>
+            <span class="featured-price">Rs. 229</span>
+            <button class="add-cart-btn btn-secondary" onclick="addToCart(event, 'mango_pulp')">Add to Cart</button>
+          </div>
+        </div>
+
+        <div class="featured-card" onclick="openProductModal('kokum_syrup')">
+          <div class="featured-img">
+            <img src="images/Kokum Syrup.png" alt="Kokum Syrup" />
+          </div>
+          <div class="featured-info">
+            <h3>Kokum Syrup</h3>
+            <span class="featured-price">Rs. 199</span>
+            <button class="add-cart-btn btn-secondary" onclick="addToCart(event, 'kokum_syrup')">Add to Cart</button>
+          </div>
+        </div>
+
+        <div class="featured-card" onclick="openProductModal('jackfruit_chips')">
+          <div class="featured-img">
+            <img src="images/JackfruitFries.png" alt="Jackfruit Chips" />
+          </div>
+          <div class="featured-info">
+            <h3>Jackfruit Chips</h3>
+            <span class="featured-price">Rs. 189</span>
+            <button class="add-cart-btn btn-secondary" onclick="addToCart(event, 'jackfruit_chips')">Add to
+              Cart</button>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CATEGORIES SECTION will go here -->
+  <!-- CATEGORIES SECTION -->
+  <section class="categories" id="categories">
+    <div class="section-container">
+
+      <!-- Section Header -->
+      <div class="section-header">
+        <span class="section-badge">What We Offer</span>
+        <h2 class="section-title">Shop by Category</h2>
+        <p class="section-desc">
+          Explore our range of authentic Konkan coastal products,
+          sourced directly from local farmers and artisans.
+        </p>
+      </div>
+
+      <!-- Category Cards -->
+      <div class="categories-grid">
+
+        <div class="category-card">
+          <div class="category-img">
+            <img src="images/Cashews.png" alt="Cashews" />
+          </div>
+          <div class="category-info">
+            <h3>Cashews</h3>
+            <p>Premium whole & flavoured cashews</p>
+            <a href="#products" class="category-link">Shop Now &rarr;</a>
+          </div>
+        </div>
+
+        <div class="category-card">
+          <div class="category-img">
+            <img src="images/Kokum Syrup.png" alt="Kokum Sharbat" />
+          </div>
+          <div class="category-info">
+            <h3>Kokum Sharbat & Butter</h3>
+            <p>Refreshing sharbat, pure butter & more</p>
+            <a href="#products" class="category-link">Shop Now &rarr;</a>
+          </div>
+        </div>
+
+        <div class="category-card">
+          <div class="category-img">
+            <img src="images/Mango Pulp.png" alt="Fruit Pulps" />
+          </div>
+          <div class="category-info">
+            <h3>Fruit Pulps</h3>
+            <p>Sun-ripened tropical fruit pulps</p>
+            <a href="#products" class="category-link">Shop Now &rarr;</a>
+          </div>
+        </div>
+
+        <div class="category-card">
+          <div class="category-img">
+            <img src="images/JackfruitFries.png" alt="Jackfruit Fries" />
+          </div>
+          <div class="category-info">
+            <h3>Jackfruit Fries</h3>
+            <p>Crispy authentic Konkan style jackfruit fries</p>
+            <a href="#products" class="category-link">Shop Now &rarr;</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURED PRODUCTS SECTION will go here -->
+  <!-- FEATURED PRODUCTS SECTION -->
+  <section class="products" id="products">
+    <div class="section-container">
+
+      <!-- Section Header -->
+      <div class="section-header">
+        <span class="section-badge">Our Best</span>
+        <h2 class="section-title">Best of Konkan</h2>
+        <p class="section-desc">
+          Straight from the Konkan coast — no middlemen, no additives,
+          just pure goodness in every pack.
+        </p>
+      </div>
+
+      <!-- Products Grid -->
+      <div class="products-rich-grid">
+
+        <div class="rich-product-card" onclick="openProductModal('cashews')">
+          <div class="product-badge">Bestseller</div>
+          <div class="rich-product-img">
+            <img src="images/Cashews.png" alt="Cashews" />
+          </div>
+          <div class="rich-product-info">
+            <div class="product-rating">★★★★★ <span>(124)</span></div>
+            <h3>Premium Cashews</h3>
+            <p>Whole W320 grade cashews</p>
+            <div class="rich-product-bottom">
+              <span class="rich-product-price">Rs. 349</span>
+              <button class="add-cart-btn" onclick="addToCart(event, 'cashews')">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="rich-product-card" onclick="openProductModal('mango_pulp')">
+          <div class="rich-product-img">
+            <img src="images/Mango Pulp.png" alt="Mango Pulp" />
+          </div>
+          <div class="rich-product-info">
+            <div class="product-rating">★★★★☆ <span>(89)</span></div>
+            <h3>Mango Pulp</h3>
+            <p>Alphonso mango pulp — thick and sweet</p>
+            <div class="rich-product-bottom">
+              <span class="rich-product-price">Rs. 229</span>
+              <button class="add-cart-btn" onclick="addToCart(event, 'mango_pulp')">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="rich-product-card" onclick="openProductModal('kokum_syrup')">
+          <div class="product-badge">Pure</div>
+          <div class="rich-product-img">
+            <img src="images/Kokum Syrup.png" alt="Kokum Sharbat" />
+          </div>
+          <div class="rich-product-info">
+            <div class="product-rating">★★★★★ <span>(210)</span></div>
+            <h3>Kokum Sharbat</h3>
+            <p>Refreshing traditional coastal kokum sharbat base</p>
+            <div class="rich-product-bottom">
+              <span class="rich-product-price">Rs. 199</span>
+              <button class="add-cart-btn" onclick="addToCart(event, 'kokum_syrup')">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="rich-product-card" onclick="openProductModal('jackfruit_chips')">
+          <div class="rich-product-img">
+            <img src="images/JackfruitFries.png" alt="Jackfruit Chips" />
+          </div>
+          <div class="rich-product-info">
+            <div class="product-rating">★★★★☆ <span>(64)</span></div>
+            <h3>Jackfruit Chips</h3>
+            <p>Crispy thin-sliced golden jackfruit chips</p>
+            <div class="rich-product-bottom">
+              <span class="rich-product-price">Rs. 189</span>
+              <button class="add-cart-btn" onclick="addToCart(event, 'jackfruit_chips')">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="rich-product-card" onclick="openProductModal('banana_chips')">
+          <div class="rich-product-img">
+            <img src="images/BananaChips.png" alt="Banana Chips" />
+          </div>
+          <div class="rich-product-info">
+            <div class="product-rating">★★★★☆ <span>(215)</span></div>
+            <h3>Banana Chips</h3>
+            <p>Authentic Konkan style crispy banana chips</p>
+            <div class="rich-product-bottom">
+              <span class="rich-product-price">Rs. 120</span>
+              <button class="add-cart-btn" onclick="addToCart(event, 'banana_chips')">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="rich-product-card" onclick="openProductModal('kokum_butter')">
+          <div class="product-badge">Vegan & Pure</div>
+          <div class="rich-product-img">
+            <img src="images/Kokum Butter.png" alt="Kokum Butter" />
+          </div>
+          <div class="rich-product-info">
+            <div class="product-rating">★★★★★ <span>(310)</span></div>
+            <h3>Kokum Butter</h3>
+            <p>Cold-pressed pure vegan butter & skincare</p>
+            <div class="rich-product-bottom">
+              <span class="rich-product-price">Rs. 399</span>
+              <button class="add-cart-btn" onclick="addToCart(event, 'kokum_butter')">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="rich-product-card" onclick="openProductModal('salted_cashews')">
+          <div class="rich-product-img">
+            <img src="images/Salted Cashews.png" alt="Salted Cashews" />
+          </div>
+          <div class="rich-product-info">
+            <div class="product-rating">★★★★☆ <span>(142)</span></div>
+            <h3>Salted Cashews</h3>
+            <p>Lightly roasted and perfectly salted</p>
+            <div class="rich-product-bottom">
+              <span class="rich-product-price">Rs. 279</span>
+              <button class="add-cart-btn" onclick="addToCart(event, 'salted_cashews')">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="rich-product-card" onclick="openProductModal('choco_cashews')">
+          <div class="product-badge">Gifting Special</div>
+          <div class="rich-product-img">
+            <img src="images/Choco Cashews.png" alt="Choco Cashews" />
+          </div>
+          <div class="rich-product-info">
+            <div class="product-rating">★★★★★ <span>(75)</span></div>
+            <h3>Chocolate Cashews</h3>
+            <p>Premium cashews coated in rich chocolate</p>
+            <div class="rich-product-bottom">
+              <span class="rich-product-price">Rs. 299</span>
+              <button class="add-cart-btn" onclick="addToCart(event, 'choco_cashews')">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY KONKAN ORIGINS will go here -->
+  <!-- WHY KONKAN ORIGINS SECTION -->
+  <section class="why-us" id="why-us">
+    <div class="section-container">
+
+      <!-- Section Header -->
+      <div class="section-header">
+        <span class="section-badge">Why Choose Us</span>
+        <h2 class="section-title">Why Konkan Origins?</h2>
+        <p class="section-desc">
+          We are not just a store. We are a bridge between the
+          hardworking farmers of the Konkan coast and your kitchen table.
+        </p>
+      </div>
+
+      <!-- Features Grid -->
+      <div class="why-grid">
+
+        <div class="why-card">
+          <div class="why-icon">
+            <img src="https://cdn-icons-png.flaticon.com/512/2917/2917995.png" alt="Farm Direct" />
+          </div>
+          <h3>Farm Direct Sourcing</h3>
+          <p>
+            Every product is sourced directly from Konkan farmers —
+            no middlemen, no markups, just honest pricing and
+            fresher products.
+          </p>
+        </div>
+
+        <div class="why-card">
+          <div class="why-icon">
+            <img src="https://cdn-icons-png.flaticon.com/512/2515/2515183.png" alt="No Preservatives" />
+          </div>
+          <h3>Zero Preservatives</h3>
+          <p>
+            Our products contain absolutely no artificial preservatives,
+            colours or flavours. What you see is exactly what nature made.
+          </p>
+        </div>
+
+        <div class="why-card">
+          <div class="why-icon">
+            <img src="https://cdn-icons-png.flaticon.com/512/3176/3176369.png" alt="Quality Checked" />
+          </div>
+          <h3>Quality Checked</h3>
+          <p>
+            Every batch goes through strict quality checks before
+            packaging so you always get the freshest, finest
+            coastal produce.
+          </p>
+        </div>
+
+        <div class="why-card">
+          <div class="why-icon">
+            <img src="https://cdn-icons-png.flaticon.com/512/709/709722.png" alt="Fast Delivery" />
+          </div>
+          <h3>Fast Delivery</h3>
+          <p>
+            We ship pan-India with care. Orders above Rs. 499 get
+            free delivery straight to your doorstep — packed fresh,
+            delivered fast.
+          </p>
+        </div>
+
+        <div class="why-card">
+          <div class="why-icon">
+            <img src="https://cdn-icons-png.flaticon.com/512/1170/1170678.png" alt="Support Farmers" />
+          </div>
+          <h3>Support Local Farmers</h3>
+          <p>
+            Every purchase you make directly supports the livelihoods
+            of small-scale Konkan farmers and their families.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer" id="footer">
+    <div class="footer-container">
+
+      <!-- Top Footer -->
+      <div class="footer-top">
+
+        <!-- Brand Column -->
+        <div class="footer-col brand-col">
+          <div class="footer-logo">
+            <img src="images/Konkan Origins Logo.png" alt="Konkan Origins" class="brand-logo-footer" />
+          </div>
+          <p class="footer-about">
+            Bringing authentic, preservative-free Konkan coastal
+            products directly from local farmers to your doorstep.
+            Taste the tradition, feel the difference.
+          </p>
+          <div class="footer-socials">
+            <a href="#" class="social-link">Facebook</a>
+            <a href="#" class="social-link">Instagram</a>
+            <a href="#" class="social-link">Youtube</a>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="footer-col">
+          <h4 class="footer-heading">Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#categories">Shop</a></li>
+            <li><a href="#products">Products</a></li>
+            <li><a href="#why-us">Our Story</a></li>
+          </ul>
+        </div>
+
+        <!-- Products -->
+        <div class="footer-col">
+          <h4 class="footer-heading">Our Products</h4>
+          <ul class="footer-links">
+            <li><a href="#products">Cashews</a></li>
+            <li><a href="#products">Choco Cashews</a></li>
+            <li><a href="#products">Salted Cashews</a></li>
+            <li><a href="#products">Jackfruit Fries</a></li>
+            <li><a href="#products">Kokum Butter</a></li>
+            <li><a href="#products">Kokum Sharbat</a></li>
+            <li><a href="#products">Mango Pulp</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact -->
+        <div class="footer-col">
+          <h4 class="footer-heading">Contact Us</h4>
+          <ul class="footer-contact">
+            <li>
+              <span class="contact-label">Email</span>
+              <span>hello@konkanorigins.in</span>
+            </li>
+            <li>
+              <span class="contact-label">Phone</span>
+              <span>+91 98765 43210</span>
+            </li>
+            <li>
+              <span class="contact-label">Location</span>
+              <span>Sindhudurg, Maharashtra, India</span>
+            </li>
+            <li>
+              <span class="contact-label">Hours</span>
+              <span>Mon - Sat, 9am to 6pm</span>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Newsletter Strip -->
+      <div class="footer-newsletter">
+        <div class="newsletter-text">
+          <h4>Get fresh deals in your inbox</h4>
+          <p>Subscribe for offers, new arrivals and coastal stories.</p>
+        </div>
+        <div class="newsletter-form">
+          <input type="email" placeholder="Enter your email address" />
+          <button>Subscribe</button>
+        </div>
+      </div>
+
+      <!-- Bottom Footer -->
+      <div class="footer-bottom">
+        <p>&copy; 2025 Konkan Origins. All rights reserved.</p>
+        <div class="footer-bottom-links">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+          <a href="#">Refund Policy</a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+  <!-- JS -->
+  <script>
+    // Hamburger toggle
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    hamburger.addEventListener('click', () => {
+      mobileMenu.classList.toggle('open');
+      hamburger.classList.toggle('active');
+    });
+  </script>
+
+  <!-- PRODUCT MODAL -->
+  <div class="modal-overlay" id="productModal">
+    <div class="modal-content product-content">
+      <button class="close-modal" onclick="closeProductModal()">×</button>
+      <div class="modal-body hide-scroll" id="productModalBody">
+        <!-- Content gets injected here by product.js -->
+      </div>
+    </div>
+  </div>
+
+  <!-- AUTH MODAL -->
+  <div class="modal-overlay" id="authModal">
+    <div class="modal-content auth-content">
+      <button class="close-modal" onclick="closeAuthModal()">×</button>
+      <div class="modal-body" id="authModalBody">
+        <!-- Auth content injected via JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- CART SIDEBAR -->
+  <div class="cart-sidebar" id="cartSidebar">
+    <div class="cart-header">
+      <h3>Your Cart</h3>
+      <button class="close-cart" onclick="toggleCart()">×</button>
+    </div>
+    <div class="cart-items" id="cartItemsContainer">
+      <!-- Items inject here -->
+    </div>
+    <div class="cart-footer">
+      <div class="cart-total">
+        <span>Total:</span>
+        <span id="cartTotalAmt">Rs. 0</span>
+      </div>
+      <button class="btn-primary checkout-btn" onclick="goToCheckout()">Proceed to Checkout</button>
+    </div>
+  </div>
+
+  <!-- JS Scripts -->
+  <script src="auth.js"></script>
+  <script src="products_data.js"></script>
+  <script src="cart.js"></script>
+  <script src="product.js"></script>
+  <script src="checkout.js"></script>
+  <script src="rewards.js"></script>
+
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script src="map.js"></script>
+
+  <script>
+    // Sticky navbar shadow on scroll
+    window.addEventListener('scroll', () => {
+      const navbar = document.querySelector('.navbar');
+      navbar.classList.toggle('scrolled', window.scrollY > 10);
+    });
+  </script>
+
+</body>
+
+</html>
